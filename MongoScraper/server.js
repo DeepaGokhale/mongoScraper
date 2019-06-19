@@ -49,27 +49,29 @@ app.get("/articles/:id", function(req, res) {
         _id: req.params.id
       }).populate("note")
         .then(function(data){
-            res.render("articles", { articles: data});
-            res.json(data);
+            res.render("articles", { articlesNotes: data});
+            //res.json(data);
       })
   });
 
 // Route for saving/updating an Article's associated Note
 app.post("/api/articles/:id", function(req, res) {
+    console.log(req.body);
     var note = {};
-    note.title = req.body.title;
-    note.note = req.body.body;
+    note.title = req.body.noteTitle;
+    note.body = req.body.note;
 // save the new note to the Notes collection
-    db.Note.create(note)
-        .then(function(dbNote){
-            return db.Article.findOneAndUpdate(
-            {_id: req.params.id}, 
-            {$push: {notes:dbNote._id}},
-            {new: true})
-        }).then(function(article){
-            res.json(article);
-            console.log("it is saved!");
-        })
+    console.log(note);
+    // db.Note.create(note)
+    //     .then(function(dbNote){
+    //         return db.Article.findOneAndUpdate(
+    //         {_id: req.params.id}, 
+    //         {$push: {notes:dbNote._id}},
+    //         {new: true})
+    //     }).then(function(article){
+    //         res.json(article);
+    //         //console.log("it is saved!");
+    //     })
   });
 
 // Route for deleting an Article
