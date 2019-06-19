@@ -55,7 +55,7 @@ app.get("/articles/:id", function(req, res) {
   });
 
 // Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function(req, res) {
+app.post("/api/articles/:id", function(req, res) {
     var note = {};
     note.title = req.body.title;
     note.note = req.body.body;
@@ -73,13 +73,14 @@ app.post("/articles/:id", function(req, res) {
   });
 
 // Route for deleting an Article
-app.delete("/articles/:id", function(req, res) {
+app.delete("/api/articles/:id", function(req, res) {
     // save the new note to the Notes collection
-    db.Note.deleteOne({
+    db.Article.deleteOne({
         _id: req.params.id
         }).then(function(data)
         {
-        res.json(data);
+            console.log("Deleted");
+            res.json(data);
         });
 });
 

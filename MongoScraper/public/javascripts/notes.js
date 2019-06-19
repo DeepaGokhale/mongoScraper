@@ -24,9 +24,9 @@ var API = {
       });
     },
   
-    deleteNote: function (noteId) {
+    deleteArt: function (noteId) {
       return $.ajax({
-        url: "api/note/" + noteId,
+        url: "api/articles/" + noteId,
         type: "DELETE"
       });
     }
@@ -40,14 +40,14 @@ var addNotesClick = function(event){
 
 
 // Remove the Notes 
-var delNotesClick = function (event) {
+var delArtClick = function (event) {
     //event.preventDefault();
     console.log("Reached the delete");
 
-    var idToArticle = $(this).attr("id");
-    //console.log(idToArticle);
-    API.deleteNote(idToArticle).then( function(data){
-        console.log(data);
+    var idToArticle = $(this).parent().attr('data-id');
+    console.log(idToArticle);
+    API.deleteArt(idToArticle).then( function(data){
+        console.log(idToArticle);
         window.location.reload();
     })
   
@@ -69,7 +69,7 @@ var saveNotesClick = function (event) {
 // // Add event listeners to the submit and delete buttons
 $(document).ready(function () {
     console.log("REached in button clicks ready");
-    $(".delNotes").on("click", delNotesClick);
+    $(".delArticle").on("click", delArtClick);
     $(".addNotes").on("click", addNotesClick);
     $("#btnSave").on("click", saveNotesClick);
   });
