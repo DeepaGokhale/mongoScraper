@@ -8,10 +8,8 @@
         <div class="row">
             <div class="col-lg-9 news">
                 {{!-- display title --}}
-
                     <p class="title">{{title}}</p>
                 {{!-- display link --}}
-
                     <a href="#" class="link">{{link}}</a>
             </div>
             <div data-id="{{id}}">
@@ -22,45 +20,53 @@
         {{/each}}
     </ul>
 </div>
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">    
-    <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <bold><h3 class="modal-title">Enter a note: </h3></bold>
+<form id="addNotesForm" name="addNotes" action="/api/articles/:id" method="post">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">    
+        <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <li>
+                        {{#each articlesNotes}}
+                            <div class="row">
+                                <p>{{id}}</p>
+                            </div>
+                        {{/each}}
+                    </li>
+                    <bold><h3 class="modal-title">Enter a note: </h3></bold>
+                </div>
+                <span>
+                    <label for="noteTitle" class="news"><h3>Title:</h3></label>
+                    <input type="text" id="noteTitle" name="noteTitle" class= "noteStyle"  placeholder="Note Title..">
+                </span>
+                <span>
+                    <label for="noteText" class="news"><h3>Note:</h3></label>
+                </span>
+                <span>           
+                    <input type="text" id="note" name="noteText" placeholder="Enter Note..">
+                </span> 
+                    <button id="btnSave" type="submit" class= "noteStyle" class="btn btn-default" data-dismiss="modal" value="">Save</button>
+                    <input type="hidden" class="form-control" name="artId" id="artId" value="">
+                </span>
             </div>
-            <span>
-                <label for="noteTitle" class="news"><h3>Title:</h3></label>
-                <input type="text" id="noteTitle" name="noteTitle" class= "noteStyle"  placeholder="Note Title..">
-            </span>
-            <span>
-                <label for="noteText" class="news"><h3>Note:</h3></label>
-            </span>
-            <span>           
-                <input type="text" id="note" name="noteText" placeholder="Enter Note..">
-            </span> 
-                <button id="btnSave" type="submit" class= "noteStyle" class="btn btn-default" data-dismiss="modal" value="">Save</button>
-                <input type="hidden" class="form-control" name="artId" id="artId" value="">
-            </span>
-        </div>
-    </div>    
-</div>
-{{!-- <div>
-    <div id="newsTitle">
-        <h1 class="news">Notes for Article: </h1><h1 id= "notesTitle" class="news" hidden="true"></h1>
+        </div>    
     </div>
-    <form id="notesForm" class ="collapse" action="/">
-        <span><label id = "artId" hidden="true"></label></span>
-        <span>
-            <label for="noteTitle" class="news"><h3>Title:</h3></label>
-            <input type="text" id="noteTitle" name="noteTitle" class= "noteStyle"  placeholder="Note Title..">
-        </span>
-        <span><label for="noteText" class="news"><h4>Note:</h4></label></span>
-        <span>           
-            <input type="text" id="note" name="noteText" placeholder="Enter Note..">
-        </span> 
-        <input id="btnSave" type="submit" class= "noteStyle" value="Save">
-    </form>
-</div> --}}
+</form>
+
+{{!-- <script>
+    $('#btnSave').click(function() {
+        var notes ={};
+        notes.title = $('#noteTitle').val();
+        notes.note = $('#note').val();
+
+        return $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        type: "POST",
+        url: "api/articles/" + articleId,
+        data: JSON.stringify(notes)
+      });
+    });
+</script> --}}

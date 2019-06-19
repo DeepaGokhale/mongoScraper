@@ -13,7 +13,7 @@ var API = {
         },
         type: "POST",
         url: "api/articles/" + artId,
-        data: JSON.stringify(note)
+        data: JSON.stringify(notes)
       });
     },
   
@@ -57,9 +57,9 @@ var delArtClick = function (event) {
 // Save the new Note to the article
 var saveNotesClick = function (event) {
     event.preventDefault();    
-    console.log("REACHED IN add Notes ");
+    //console.log("REACHED IN add Notes ");
     var idToArticle = articleId;
-    //console.log(data); // console.log(idToArticle);
+    console.log(notes); // console.log(idToArticle);
     API.saveNote(idToArticle).then( function(data){
         console.log(data);
         window.location.reload();
@@ -68,7 +68,7 @@ var saveNotesClick = function (event) {
 
 // // Add event listeners to the submit and delete buttons
 $(document).ready(function () {
-    console.log("REached in button clicks ready");
+    //console.log("REached in button clicks ready");
     $(".delArticle").on("click", delArtClick);
     $(".addNotes").on("click", addNotesClick);
     $("#btnSave").on("click", saveNotesClick);
