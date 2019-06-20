@@ -1,7 +1,7 @@
 # mongoScraper
 mongoScraper scrapes articles from a site
 
-1. You can scrape/clip  more documents
+1. You can scrape/clip  more documents by clicking the "Clip" just Note clear (all) is not programmed at this point
 2. You can click "Enter Notes" to add notes to the specific article and also delete an article
 3. When you clik the link on the article it will open the article for you to read more than the title/short description you see
 
