@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -116,6 +116,4 @@ typings/
 
 # config
 config/config.json
-=======
->>>>>>> 8eb902a335583666a74797de242016becdd48411
->>>>>>> 848b710a79158ab47e4070071bada21e78db8573
+
