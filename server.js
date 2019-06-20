@@ -110,14 +110,13 @@ app.get("/scrape", function(req, res) {
         // save the articleArr into Article model
         var title = $(element).children().text();
         var link = $(element).find("a").attr("href");
-        var note = {};
 
         articleArr.title = title;
 
         //set the link property
         articleArr.link = link;
         //add the note
-        articleArr.note = note;
+        // articleArr.note = note;
 
         // Create a new Article using the `articleArr` object built from scraping
         db.Article.create(articleArr)
@@ -135,7 +134,7 @@ app.get("/scrape", function(req, res) {
 
     // Send a message to the client
      //res.send("Scrape Complete");
-     res.json(result);
+     res.json(response);
   });
 });
 
