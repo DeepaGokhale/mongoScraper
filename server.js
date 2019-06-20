@@ -28,8 +28,16 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/newsClipper", { useNewUrlParser: true });
+var databaseUri = "mongodb://localhost/newsClipper";
 
+if (process.env.MONGODB_URI)
+  {
+    mongoose.connect(process.env.MONGODB_URI);
+  }
+ else //for local
+  {
+    mongoose.connect(databaseUri , { useNewUrlParser: true });
+  }
 
 // //default route
 app.get("/", function(req, res){

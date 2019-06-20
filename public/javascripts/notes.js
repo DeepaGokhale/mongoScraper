@@ -6,6 +6,10 @@ var $articleId;
 //console.log("In JS");
 var API = {    
     saveNote: function (artId) {
+        var notes ={};
+        notes.title = $('#noteTitle').val();
+        notes.note = $('#note').val();
+        
         console.log("api/articles/" + artId)
         return $.ajax({
         headers: {
@@ -59,7 +63,7 @@ var saveNotesClick = function (event) {
     event.preventDefault();    
     //console.log("REACHED IN add Notes ");
     var idToArticle = articleId;
-    console.log(notes); // console.log(idToArticle);
+    //console.log(notes); // console.log(idToArticle);
     API.saveNote(idToArticle).then( function(data){
         console.log(data);
         window.location.reload();
